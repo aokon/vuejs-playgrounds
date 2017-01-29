@@ -55,6 +55,17 @@
 
     <p>Counter: {{ counter }}, secondCounter: {{ secondCounter }}</p>
     <p>Current Result: {{ currentResultMethod() }} | {{ currentResult }}</p>
+
+    <hr>
+    <h3> Practice III</h3>
+
+    <button @click="value+=5">Add 5</button>
+    <button @click="value++">Add 1</button>
+
+    <p>Current value {{ value }}</p>
+    <p>Current result: {{ result }}
+
+
   </div>
 </template>
 
@@ -74,7 +85,7 @@ export default {
       secondCounter: 0,
       x: 0,
       y: 0,
-      value: null
+      value: 0
     }
   },
 
@@ -82,14 +93,20 @@ export default {
     currentResult() {
       console.log('currentResult - computed');
       return this.counter > 5 ? 'Grater than 5' : 'Smaller than 5';
+    },
+
+    result() {
+      return this.value > 37 ? 'it is bigger that 37' : 'sorry, we are not there';
     }
   },
 
   watch: {
     counter(value) {
-      setTimeout(() => {
-        this.counter = 0;
-      }, 2000);
+      setTimeout(() => { this.counter = 0; }, 2000);
+    },
+
+    value(val) {
+      setTimeout(() => { this.value = 0; }, 5000);
     }
   },
 
