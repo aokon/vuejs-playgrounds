@@ -48,6 +48,13 @@
       </div>
     </p>
 
+    <h3>Computed properties</h3>
+
+    <button @click="counter++">Increment</button>
+    <button @click="secondCounter++">Second Increment</button>
+
+    <p>Counter: {{ counter }}, secondCounter: {{ secondCounter }}</p>
+    <p>Current Result: {{ currentResultMethod() }} | {{ currentResult }}</p>
   </div>
 </template>
 
@@ -64,13 +71,26 @@ export default {
       name: 'Stefan',
       meme: 'https://static01.nyt.com/images/2016/08/05/us/05onfire1_xp/05onfire1_xp-master768-v2.jpg',
       counter: 0,
+      secondCounter: 0,
       x: 0,
       y: 0,
       value: null
     }
   },
 
+  computed: {
+    currentResult() {
+      console.log('currentResult - computed');
+      return this.counter > 5 ? 'Grater than 5' : 'Smaller than 5';
+    }
+  },
+
   methods: {
+    currentResultMethod() {
+      console.log('currentResult - method');
+      return this.counter > 5 ? 'Grater than 5' : 'Smaller than 5';
+    },
+
     showAlert() {
       alert('Hello');
     },
