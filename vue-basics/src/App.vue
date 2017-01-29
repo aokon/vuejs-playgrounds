@@ -85,6 +85,14 @@ export default {
     }
   },
 
+  watch: {
+    counter(value) {
+      setTimeout(() => {
+        this.counter = 0;
+      }, 2000);
+    }
+  },
+
   methods: {
     currentResultMethod() {
       console.log('currentResult - method');
