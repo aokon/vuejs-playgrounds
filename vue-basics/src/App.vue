@@ -65,7 +65,22 @@
     <p>Current value {{ value }}</p>
     <p>Current result: {{ result }}
 
+    <hr>
 
+    <h3>Playing with dynamic CSS</h3>
+
+    <div
+      class="rect--inline"
+      @click="handleRed = !handleRed"
+      :class="cssClasses"></div>
+    <div class="rect--inline"></div>
+    <div class="rect--inline"
+         :class="color"></div>
+
+    <p>
+      <label for="color">Pick css class</label>
+      <input type="text" v-model="color" id="color">
+    </p>
   </div>
 </template>
 
@@ -85,7 +100,9 @@ export default {
       secondCounter: 0,
       x: 0,
       y: 0,
-      value: 0
+      value: 0,
+      handleRed: false,
+      color: 'rect--green'
     }
   },
 
@@ -93,6 +110,12 @@ export default {
     currentResult() {
       console.log('currentResult - computed');
       return this.counter > 5 ? 'Grater than 5' : 'Smaller than 5';
+    },
+
+    cssClasses() {
+      return {
+        'rect--red': this.handleRed
+      };
     },
 
     result() {
@@ -176,5 +199,24 @@ li {
 
 a {
   color: #42b983;
+}
+
+.rect--inline {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  display: inline-block;
+}
+
+.rect--red {
+  background-color: red;
+}
+
+.rect--green {
+  background-color: green;
+}
+
+.rect--blue {
+  background-color: blue;
 }
 </style>
